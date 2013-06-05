@@ -91,7 +91,43 @@ XiaoBin Xu  \textsc{11302010008}\\[3cm]% Your name
 
 \section*{1~~~~Introduction}
 \section*{2~~~~Design Description}
-\section*{4~~~~Conclusion}
+\section*{2.1~~~~Data Structure and Definition}
+\section*{2.1.1~~~~Message Structure}
+message meta data:\\
+origin source time
+ok node list
+path node list
+id
+\\
+message content: image(optional) and origin source location information
+
+\section*{2.1.2~~~~Effective Zone}
+\section*{2.1.3~~~~Constant Definition}
+\section*{2.2~~~~Routing Algorithm}
+In order to let messages reach the base station and maximize the throughput, we adopt a location based algorithm instead of brute force algorithm to broadcast messages.\\[1em]
+(We define the base station as node D, the handheld device which is about to send information as the node S. As mentioned in DP description, every handheld device has the location information of base station. )The description mentioned below only focus on the whole process of routing and ignore the detail of other things such as reliability, security issues etc.\\[1em]
+Step1: S invoke the predefined scan() function to get a list of tuples (node, loss\_prob), for the sake of improving effectivity, the S choose chose nodes that the loss\_prob is lower than a predefined constant P such as 0.5. and also is not in the origin path.\\[1em]
+Step2: S broadcast a message which has an unique id to nearby nodes. The message contains the location information of S, a list which contains nodes chose in Step1, the content information which contains location information of origin source node(here is S) and image information which is optional if S wants to send image.\\[1em]
+Step3: If node A receives the message sent by S, the first thing is that invoking receive() function and checking the message having been received by the unique id and a message id list maintained in A, if it does, discard itself. Then, checking whether the sender S wants A to broadcast the content message by checking the node list. If not, discard itself, too. \\[1em]
+Step4: Then A calculates the effective zone with the location information of the sender and the base station. Compared with itself local information, if A is not in the effective zone, discard itself. Otherwise it rebroadcast the content message along with updated mete data as S does.\\[1em]
+If all things go well, after the  iterative processes of Step 1 to 5, the message will reach D with relative small number of hops.
+\section*{2.3~~~~Different Reliability}
+\section*{2.3.1~~~~Basic Lost Handling}
+In our location based algorithm, many of nodes discard itself for the sake of improving throughput. As a result, there will be a problem that S can not reach D through the nodes in the effective zone. Therefore, we need a basic mechanism to handle such problem along with the lost problem in send or receive process.\\[1em]
+If the sender S does not receive confirm information carried by receive() function for a while, there are two possibilities:1. 2.
+(rebroadcast cast for first several times and then expand effective zone gradually)
+\section*{2.3.2~~~~Burst Mode}
+ location information 5min, accelerate the frequency of rebroadcast
+\section*{2.3.3~~~~Image Reliability}
+try to send most recent image to base station
+
+\section*{2.4~~~~Malicious Nodes Handling}
+different kinds of malicious nodes\\
+1. receive and discard but send receive()\\
+2. rebroadcast repeatedly\\
+3. broke message\\
+
+\section*{3~~~~Conclusion}
 
 Word Count:2483(exclude title page)
 
