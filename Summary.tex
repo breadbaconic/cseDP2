@@ -122,11 +122,19 @@ If the sender S does not receive confirm information carried by receive() functi
 try to send most recent image to base station
 
 \section*{2.4~~~~Malicious Nodes Handling}
-different kinds of malicious nodes\\
-1. receive and discard but send receive()\\
-2. rebroadcast repeatedly\\
-3. broke message\\
-
+Nodes in the system should distinguish malicious nodes by some strange behavior, so we classify different kinds of malicious nodes and handle it separately.
+\subsection*{Type One}
+the malicious node hear a legitimate message, then broadcasts many copy(such as one million) of this message pretending it received it from the source.
+\paragraph{How to handle}
+We add a counter to every node. When a node receive abnormal number of messages of one sender, the node can mark sender as a malicious node and discard message from it. \\In this situation, we effectively prevent the millions copies of message from propagating forward to the whole system. However, nodes around the malicious node will suffer millions of connections till the malicious node stop sending, so these nodes will lose the ability to receive other messages. The only thing we can do to handle this relative small problem is send warning message to the base station or the other people to handle the malicious node in physical way. 
+\subsection*{Type TWO}
+The malicious node A receive a message, send the receive() function to the sender but stop forward the message and the sender will consider A will do its job as usual. 
+\paragraph{How to handle}
+Under most situation, it is not a big problem since other nodes around sender will do their job as usual.\\ However, when all valid nodes(in effective zone and low lost probability) around sender are malicious node, the sender can not send message to the base station. We will disscuse it further in our report.
+\subsection*{Type THREE}
+The malicious node change the message and send forward to the base station. 
+\paragraph{How to handle}
+The method is easy that encrypt the message, but how to implement it correctly and prevent malicious node decrypt is a difficult theoretical problem and we will not discuss here.
 \section*{3~~~~Conclusion}
 
 Word Count:2483(exclude title page)

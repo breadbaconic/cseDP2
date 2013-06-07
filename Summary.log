@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  5 JUN 2013 21:27
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  7 JUN 2013 17:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -214,30 +214,25 @@ e
 [1
 
 {/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[1]
-Underfull \hbox (badness 10000) in paragraph at lines 125--129
-
- []
-
-[2] [3] (./Summary.aux) ) 
+[1] [2] [3] [4] (./Summary.aux) ) 
 Here is how much of TeX's memory you used:
- 2217 strings out of 493488
- 31116 string characters out of 3141326
+ 2220 strings out of 493488
+ 31154 string characters out of 3141326
  90971 words of memory out of 3000000
- 5525 multiletter control sequences out of 15000+200000
- 6999 words of font info for 25 fonts, out of 3000000 for 9000
+ 5528 multiletter control sequences out of 15000+200000
+ 7613 words of font info for 27 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 37i,4n,24p,385b,199s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2012/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr17.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmti12.pfb>
-Output written on Summary.pdf (4 pages, 67897 bytes).
+ 37i,4n,24p,671b,199s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/texlive/2012/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr17.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmti12.pfb>
+Output written on Summary.pdf (5 pages, 71217 bytes).
 PDF statistics:
- 37 PDF objects out of 1000 (max. 8388607)
- 25 compressed objects within 1 object stream
+ 40 PDF objects out of 1000 (max. 8388607)
+ 27 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
