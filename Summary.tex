@@ -121,21 +121,56 @@ The description mentioned below only focus on the whole process of routing and i
 \item If node A receives the message sent by S, the first thing is to check whether the message has been sent from A, and discard it if it has. Then, check whether S wants A to broadcast the message by checking the node list. If not, discard it, too. \\[1em]
 \item Then A calculates whether A is in the effective zone calculated using the location information of the sender and the base station, if A is not in the effective zone, discard it. Otherwise it rebroadcast the content message along with updated mete data as S does and invokes receive().\\[1em]
 \item If all things go well, after the  iterative processes of Step 1 to 5, the message will reach D with relative small number of hops.
+\item D response with a special ACK to the sender to it, the sender constructs a path by appending it in front of the path, and goes on sending this ACK to the sender, until S. 
+\item In this case, S knows the message is sent successfully, S can now discard the message, and a valid path is gotten from the ACK.
 \end{enumerate}
 
 \section*{2.2~~~~Transfer Protocol}
 
-\section*{2.3~~~~Different Reliability}
+Since image and location information differ in size and importance, we adopt different end-to-end protocols for them.
+
+\section*{2.2.1~~~~Location Transfer Protocol}
+
+Location information is the most important in the transfer system, so each time a location information is received from the satellite or other devices, it sends it towards the base immediately.\\[1em]
+
+The correctness of the location information is very important, and the information is quite small, so we can add redundant ECC code to correct the information instead of resending.\\[1em]
+
+To make the location information be received to the base as soon as possible, each node broadcast the location message until it receives ACK from all nodes within the loss probability limit.\\[1em]
+
+At last, to reduce the overall pressure of the communication system, each node maintains a list of the messages received and decoded correctly. If the same message is received later, it can just response with an ACK and discard the message.\\[1em]
+
+\section*{2.2.2~~~~Image Transfer Protocol}
+
+Compared to the location information, images have the following characteristics:
+
+\begin{itemize}
+\item large
+\item no strict requirement for correctness
+\end{itemize}
+
+We adopt another approach to dealing with image information:
+ 
+\begin{enumerate}
+\item the sender partitions the image into several messages and push them into the image stack
+\item the sender sends each of these messages to only one nodes within the loss probability 
+\item if an ACK is received for this message, discard this message, otherwise, resends to other nodes
+\item if a node receives a message of type image, it responds with an ACK, puts this message into the stack, and goes on sending repeating the steps above.
+\end{enumerate}
+
+Note that we send the message to just one node instead of all, this is done to reduce the pressure and make bandwidth space for location information.\\[1em]
+
+\section*{2.3~~~~Detailed Handling of Extreme Circumstances}
+
 \section*{2.3.1~~~~Basic Lost Handling}
+
 In our location based algorithm, many nodes discard the packet for the sake of improving throughput. As a result, there will be a problem that S can not reach D through the nodes in the effective zone. Therefore, we need a basic mechanism to handle such problem along with the lost problem in send or receive process.\\[1em]
 
-If the sender S does not receive confirm information carried by receive() function for a while, there are two possibilities:1. 2.
-(rebroadcast cast for first several times and then expand effective zone gradually)
-\section*{2.3.2~~~~Burst Mode}
- location information 5min, accelerate the frequency of rebroadcast
-\section*{2.3.3~~~~Image Reliability}
-try to send most recent image to base station
+If the sender S does not receive confirm information from D for a while, it first rebroadcast the message for several times and then expand effective zone from rectangle into the all space.\\[1em]
 
+\section*{2.3.2~~~~Burst Mode}
+
+ location information 5min, accelerate the frequency of rebroadcast, but it is necessary, and this method is the best.
+ 
 \section*{2.4~~~~Malicious Nodes Handling}
 Nodes in the system should distinguish malicious nodes by some strange behavior, so we classify different kinds of malicious nodes and handle it separately.
 \subsection*{Type One}
