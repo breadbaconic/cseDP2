@@ -90,7 +90,7 @@ XiaoBin Xu  \textsc{11302010008}\\[3cm]% Your name
 \end{titlepage}
 
 \section*{1~~~~Introduction}
-Most typical communications depend on wires and infrastructures, and that means, when a disaster strikes, the infrastructure won’t be accessible, so we need an ad hoc network communication system. Our ad hoc wireless system, aiming at the reliability of location information and the maximal throughput, implements an adaptive effective zone algorithm as our routing algorithm to broadcast messages along with other feathers.%originally fears here, i don't know what it means
+Most typical communications depend on wires and infrastructures, and that means, when a disaster strikes, the infrastructure won’t be accessible, so we need an ad hoc network communication system. Our ad hoc wireless network, aiming at the reliability of location information and the maximal throughput, implements an adaptive effective zone algorithm as our routing algorithm to broadcast messages along with other feathers.%originally fears here, i don't know what it means
 \section*{2~~~~Design Description}
 
 The design is partitioned into two parts, since the link layer is simple, we give the algorithm part in the network layer, and the protocol part in the end-to-end layer.
@@ -100,7 +100,7 @@ The design is partitioned into two parts, since the link layer is simple, we giv
 In this section, we give our routing algorithm in the network layer. We first describe the data structure, that is, what we add in the header and tailer of the packet. Then we describe how the algorithm works.
 
 \section*{2.1.0~~~~Some Terms}
-We define the base station as node D, the handheld device which is about to send information as the node S. As mentioned in DP description, every handheld device has the location information of base station. P means the loss probability limit, and by saying some nodes $within the loss probability limit$, we mean the packet loss probability is less than P.
+We define the base station as node D, the handheld device which is about to send information as the node S. As mentioned in DP description, every handheld device has the location information of base station. P means the loss probability limit, and by saying some nodes $within\ the\ loss\ probability\ limit$, we mean the packet loss probability is less than P.
 
 \paragraph{Adapt Effective Zone}
 \begin{figure}[!ht]
@@ -135,7 +135,7 @@ The description mentioned below only focus on the whole process of routing and i
 \item S broadcasts a message which has an unique ID to nearby nodes. The message contains the location information of S, a list which contains nodes chosen in Step1, the content information which contains location information of origin source node(here is S) or image information.
 \item If node A receives the message sent by S, the first thing is to check whether the message has been sent from A, and discard it if it has. Then, check whether S wants A to broadcast the message by checking the node list. If not, discard it, too. 
 \item Then A calculates whether A is in the effective zone calculated using the location information of the sender and the base station, if A is not in the effective zone, discard it. Otherwise it rebroadcast the content message along with updated mete data as S does and invokes receive().
-\item If all things go well, after the  iterative processes of Step 1 to 5, the message will reach D. Then D responses with an overall ACK to the sender of the message to him for example, M2. M2 now knows he can pass the message and pass the ACK to his sender M1, now M1 knows he can pass the message to D via M2, so he adds M1 to cache, next time a message is received, he can send via M1, thus accelerate the sending of message.
+\item If all things go well, after the  iterative processes of Step 1 to 5, the message will reach D(figure 1). Then D responses with an overall ACK to the sender of the message to him for example, M2. M2 now knows he can pass the message and pass the ACK to his sender M1, now M1 knows he can pass the message to D via M2, so he adds M1 to cache, next time a message is received, he can send via M1, thus accelerate the sending of message.
 \end{enumerate}
 
 \section*{2.2~~~~Transfer Protocol}
